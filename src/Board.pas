@@ -75,6 +75,12 @@ type
     CHB_failure: TCheckBox;
     CHB_Error: TCheckBox;
     CHB_Warning: TCheckBox;
+    CHB_S1: TCheckBox;
+    CHB_S2: TCheckBox;
+    CHB_S3: TCheckBox;
+    CHB_S4: TCheckBox;
+    CHB_S5: TCheckBox;
+    CHB_S6: TCheckBox;
     procedure B_StornoClick(Sender: TObject);
     procedure B_ApplyClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -83,6 +89,7 @@ type
 
     chb_irs: TList<TCheckBox>;
     chb_scoms: TList<TCheckBox>;
+    chb_servo: TList<TCheckBox>;
 
   public
     OpenIndex: Integer;
@@ -136,12 +143,21 @@ begin
   Self.chb_scoms.Add(Self.CHB_SCOM13);
   Self.chb_scoms.Add(Self.CHB_SCOM14);
   Self.chb_scoms.Add(Self.CHB_SCOM15);
+
+  Self.chb_servo := TList<TCheckBox>.Create();
+  Self.chb_servo.Add(Self.CHB_S1);
+  Self.chb_servo.Add(Self.CHB_S2);
+  Self.chb_servo.Add(Self.CHB_S3);
+  Self.chb_servo.Add(Self.CHB_S4);
+  Self.chb_servo.Add(Self.CHB_S5);
+  Self.chb_servo.Add(Self.CHB_S6);
 end;
 
 procedure TF_Board.FormDestroy(Sender: TObject);
 begin
   Self.chb_irs.Free();
   Self.chb_scoms.Free();
+  Self.chb_servo.Free();
 end;
 
 procedure TF_Board.B_ApplyClick(Sender: TObject);
@@ -197,6 +213,11 @@ begin
     if (Self.chb_scoms[i].Checked) then
       modules[OpenIndex].scoms := modules[OpenIndex].scoms or (1 shl i);
 
+  modules[OpenIndex].servos := 0;
+  for var i : Integer := 0 to Self.chb_servo.Count-1 do
+    if (Self.chb_servo[i].Checked) then
+      modules[OpenIndex].servos := modules[OpenIndex].servos or (1 shl i);
+
   FormConfig.SaveData(FormConfig.config_fn);
 
   if ((errorChanged) or (warningChanged)) then
@@ -233,6 +254,15 @@ begin
     begin
       Self.chb_scoms[i].Checked := ((scoms and 1) > 0);
       scoms := scoms shr 1;
+    end;
+  end;
+
+  begin
+    var servos := modules[OpenIndex].servos;
+    for var i : Integer := 0 to Self.chb_servo.Count-1 do
+    begin
+      Self.chb_servo[i].Checked := ((servos and 1) > 0);
+      servos := servos shr 1;
     end;
   end;
 

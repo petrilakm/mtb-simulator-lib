@@ -30,7 +30,7 @@ uses
 const
   _DEFAULT_CFG_FILE = 'rcs/simcfg.ini'; // Config file. Change MTB ranges to make form more synoptic.
   _MAX_MTB = 255;
-  _PINS = 16;
+  _PINS = 28;
 
 type
   TMyEvent = function(Sender: TObject): Integer of object; stdcall;
@@ -52,6 +52,7 @@ type
     failure: boolean;
     irs: Cardinal;
     scoms: Cardinal;
+    servos: Cardinal;
     warning: boolean;
     error: boolean;
   end;
@@ -327,6 +328,7 @@ begin
       modules[i].exists := Ini.ReadBool('MTB' + IntToStr(i), 'is', present[i]);
       modules[i].irs := Ini.ReadInteger('MTB' + IntToStr(i), 'irs', 0);
       modules[i].scoms := Ini.ReadInteger('MTB' + IntToStr(i), 'scoms', 0);
+      modules[i].servos := Ini.ReadInteger('MTB' + IntToStr(i), 'servos', 0);
     end;
   finally
     Ini.Free();
@@ -354,6 +356,8 @@ begin
         Ini.WriteInteger('MTB' + IntToStr(i), 'irs', modules[i].irs);
       if (modules[i].scoms > 0) then
         Ini.WriteInteger('MTB' + IntToStr(i), 'scoms', modules[i].scoms);
+      if (modules[i].servos > 0) then
+        Ini.WriteInteger('MTB' + IntToStr(i), 'servos', modules[i].servos);
     end;
   finally
     Ini.UpdateFile();

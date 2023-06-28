@@ -24,12 +24,10 @@ object FormConfig: TFormConfig
     000000000000000000000000000000000000000000000000000000000000FFFF
     0000FFFF0000FFFF0000FFFF00009EDE00006EDE0000EEDE0000DEDE0000BEDE
     00007ED200006ECC00009EDE0000FFFF0000FFFF0000FFFF0000FFFF0000}
-  OldCreateOrder = False
   Position = poScreenCenter
   OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  PixelsPerInch = 96
   TextHeight = 13
   object T_flick: TTimer
     Interval = 500

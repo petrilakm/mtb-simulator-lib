@@ -3,8 +3,8 @@ object F_Board: TF_Board
   Top = 0
   BorderStyle = bsToolWindow
   Caption = 'Editovat desku [adresa]'
-  ClientHeight = 321
-  ClientWidth = 418
+  ClientHeight = 319
+  ClientWidth = 512
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,11 +12,9 @@ object F_Board: TF_Board
   Font.Name = 'Tahoma'
   Font.Style = []
   FormStyle = fsStayOnTop
-  OldCreateOrder = False
   Position = poScreenCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
     Left = 8
@@ -88,9 +86,9 @@ object F_Board: TF_Board
     TabOrder = 2
   end
   object GB_IO_type: TGroupBox
-    Left = 231
+    Left = 239
     Top = 8
-    Width = 178
+    Width = 266
     Height = 305
     Caption = ' Typy vstup'#367' a v'#253'stup'#367' '
     TabOrder = 7
@@ -312,7 +310,7 @@ object F_Board: TF_Board
       Tag = 8
       Left = 96
       Top = 158
-      Width = 65
+      Width = 73
       Height = 17
       Caption = 'S-COM 8'
       TabOrder = 24
@@ -321,7 +319,7 @@ object F_Board: TF_Board
       Tag = 9
       Left = 96
       Top = 174
-      Width = 65
+      Width = 73
       Height = 17
       Caption = 'S-COM 9'
       TabOrder = 25
@@ -330,7 +328,7 @@ object F_Board: TF_Board
       Tag = 10
       Left = 96
       Top = 190
-      Width = 65
+      Width = 73
       Height = 17
       Caption = 'S-COM 10'
       TabOrder = 26
@@ -339,7 +337,7 @@ object F_Board: TF_Board
       Tag = 11
       Left = 96
       Top = 206
-      Width = 65
+      Width = 73
       Height = 17
       Caption = 'S-COM 11'
       TabOrder = 27
@@ -348,7 +346,7 @@ object F_Board: TF_Board
       Tag = 12
       Left = 96
       Top = 229
-      Width = 65
+      Width = 73
       Height = 17
       Caption = 'S-COM 12'
       TabOrder = 28
@@ -357,7 +355,7 @@ object F_Board: TF_Board
       Tag = 13
       Left = 96
       Top = 245
-      Width = 65
+      Width = 73
       Height = 17
       Caption = 'S-COM 13'
       TabOrder = 29
@@ -366,7 +364,7 @@ object F_Board: TF_Board
       Tag = 14
       Left = 96
       Top = 261
-      Width = 65
+      Width = 73
       Height = 17
       Caption = 'S-COM 14'
       TabOrder = 30
@@ -375,10 +373,58 @@ object F_Board: TF_Board
       Tag = 15
       Left = 96
       Top = 277
-      Width = 65
+      Width = 73
       Height = 17
       Caption = 'S-COM 15'
       TabOrder = 31
+    end
+    object CHB_S1: TCheckBox
+      Left = 192
+      Top = 16
+      Width = 65
+      Height = 17
+      Caption = 'servo 1'
+      TabOrder = 32
+    end
+    object CHB_S2: TCheckBox
+      Left = 192
+      Top = 32
+      Width = 65
+      Height = 17
+      Caption = 'servo 2'
+      TabOrder = 33
+    end
+    object CHB_S3: TCheckBox
+      Left = 192
+      Top = 48
+      Width = 65
+      Height = 17
+      Caption = 'servo 3'
+      TabOrder = 34
+    end
+    object CHB_S4: TCheckBox
+      Left = 192
+      Top = 64
+      Width = 65
+      Height = 17
+      Caption = 'servo 4'
+      TabOrder = 35
+    end
+    object CHB_S5: TCheckBox
+      Left = 192
+      Top = 80
+      Width = 65
+      Height = 17
+      Caption = 'servo 5'
+      TabOrder = 36
+    end
+    object CHB_S6: TCheckBox
+      Left = 192
+      Top = 96
+      Width = 65
+      Height = 17
+      Caption = 'servo 6'
+      TabOrder = 37
     end
   end
   object E_Type: TEdit

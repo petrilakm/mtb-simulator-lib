@@ -271,6 +271,7 @@ begin
 end;
 
 function SetOutput(module, port: Cardinal; state: Integer): Integer; stdcall;
+var i: Integer;
 begin
   if (FormConfig.Status <> TSimulatorStatus.running) then
     Exit(RCS_NOT_STARTED);
@@ -287,6 +288,23 @@ begin
   FormConfig.RepaintPin(module, port);
   if (Assigned(LibEvents.OnOutputChanged.event)) then
     LibEvents.OnOutputChanged.event(FormConfig, LibEvents.OnOutputChanged.data, module);
+
+  // Simulate servo operation
+  if (port > 15) then begin
+    i := (port-16) shr 1;
+    if ((i<6) AND (i>=0)) then begin
+      inputs[module, 16+i] := 1;
+      if ((modules[module].servos shr i) AND 1) = 1 then begin
+        if (state>0) then begin
+          i := (port-16);
+          inputs[module, i] := 1;
+          inputs[module, i XOR 1] := 0;
+          if (Assigned(LibEvents.OnInputChanged.event)) then
+            LibEvents.OnInputChanged.event(FormConfig, LibEvents.OnInputChanged.data, module);
+        end;
+      end;
+    end;
+  end;
   Result := 0;
 end;
 
